@@ -1,0 +1,14 @@
+# Test sandbox — cloned repos and generated sample books (never ship)
+sandbox/
+
+# Dependencies
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Claude local state
+.claude/settings.local.json

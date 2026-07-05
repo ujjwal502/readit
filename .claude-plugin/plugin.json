@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "readit",
+  "displayName": "ReadIt",
+  "version": "0.1.0",
+  "description": "Turn any codebase into a readable book — chapters, flows, and diagrams — so people understand what's actually happening instead of vibe coding.",
+  "author": {
+    "name": "Ujjwal Tiwari",
+    "url": "https://github.com/ujjwal502"
+  },
+  "homepage": "https://github.com/ujjwal502/readit",
+  "repository": "https://github.com/ujjwal502/readit",
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "onboarding",
+    "codebase",
+    "architecture",
+    "book"
+  ]
+}
