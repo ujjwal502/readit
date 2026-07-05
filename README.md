@@ -43,6 +43,19 @@ Every chapter is written against eight knowledge categories:
 Every claim is grounded in real files — ReadIt reads the code before it writes about
 it, labels inferences as inferences, and says so honestly when something is unclear.
 
+## See it in action
+
+Here's a **complete book ReadIt generated automatically** from the
+[`expressjs/express`](https://github.com/expressjs/express) source (v5.2.1), with no
+hand edits — 15 chapters, ~26,800 words, 400+ `file:line` citations:
+
+**👉 [ujjwal502/readit-example-express](https://github.com/ujjwal502/readit-example-express)**
+
+Good chapters to skim first: the
+[Table of Contents](https://github.com/ujjwal502/readit-example-express/blob/main/README.md),
+[The Big Picture](https://github.com/ujjwal502/readit-example-express/blob/main/01-the-big-picture.md),
+and [Key Flows](https://github.com/ujjwal502/readit-example-express/blob/main/10-key-flows.md).
+
 ## Install
 
 From inside Claude Code:
