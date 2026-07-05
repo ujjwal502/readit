@@ -12,7 +12,36 @@
     {
       "name": "readit",
       "source": "./",
-      "description": "Turn any codebase into a readable book with chapters, flows, and Mermaid diagrams."
+      "description": "Turn any codebase into a readable book with chapters, flows, and Mermaid diagrams.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Ujjwal Tiwari",
+        "url": "https://github.com/ujjwal502"
+      },
+      "homepage": "https://github.com/ujjwal502/readit",
+      "repository": "https://github.com/ujjwal502/readit",
+      "license": "MIT",
+      "category": "documentation",
+      "keywords": [
+        "documentation",
+        "onboarding",
+        "codebase",
+        "architecture",
+        "book",
+        "diagrams",
+        "mermaid",
+        "knowledge"
+      ],
+      "tags": [
+        "documentation",
+        "onboarding",
+        "codebase",
+        "architecture",
+        "book",
+        "diagrams",
+        "mermaid",
+        "knowledge"
+      ]
     }
   ]
 }
