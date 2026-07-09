@@ -158,10 +158,40 @@ This is what makes the book able to "answer anything." After a full draft exists
    loop by weakening the questions — close it by improving the book.
 4. Repeat until the auditor reports no material gaps.
 
-### Phase 5 — Assemble & verify
+### Phase 5 — Quizzes (active recall)
+
+A book you read passively fades; a short, rigorous quiz after each chapter forces active
+recall and turns reading into understanding. Generate quizzes **after the audit passes**
+(so questions are grounded in a correct book) using the `quiz-master` agent.
+
+For each chapter, produce a quiz that:
+
+- **Tests understanding, not trivia.** Questions target the same eight categories the
+  chapter teaches — especially design rationale, control/data flow, contracts, and
+  "what happens if…" edge cases. Never quiz incidental facts (an exact variable name, a
+  line number) unless it is genuinely load-bearing.
+- **Is grounded and verifiable.** Every question has exactly one defensible correct
+  answer supported by the chapter and the real code. The answer key cites `path:line`,
+  so the quiz doubles as review.
+- **Mixes question types** (see Quiz specs below): recall, trace-the-flow, predict /
+  what-happens-if, design-rationale (short answer), and locate-the-change.
+- **Uses plausible distractors** — real misconceptions, not silly filler. No "all/none
+  of the above" as a crutch.
+- **Labels difficulty** (`[Recall]` / `[Apply]` / `[Design]`) so readers can self-pace.
+
+Also produce a **Final Exam** that interleaves questions across chapters and adds a few
+end-to-end scenario questions ("trace this request"; "you must add X — where and why?").
+Interleaving across chapters is what cements durable understanding.
+
+The `quiz-master` self-checks every question (exactly one correct answer, grounded,
+unambiguous, plausible distractors, tests understanding) and discards or rewrites any
+that fail. Quizzes are on by default; skip them only if the user passes `--no-quiz`.
+
+### Phase 6 — Assemble & verify
 
 - Write `README.md` = the Table of Contents with links and one-line chapter summaries.
-- Cross-link chapters (concepts should hyperlink to where they're defined/used).
+- Cross-link chapters (concepts should hyperlink to where they're defined/used), and
+  link each chapter to its quiz (and the quizzes back to their chapter).
 - Verify every file reference resolves and every Mermaid block is valid.
 - Confirm the coverage map: every cluster is covered or explicitly marked non-load-
   bearing.
@@ -246,6 +276,8 @@ Before declaring done, confirm you could answer each of these *from the book alo
 - [ ] What are the failure modes, error handling, retry/timeout, and auth models?
 - [ ] Why was each significant design decision made, and what did it trade off?
 - [ ] How do I run, configure, test, and extend it, and where would a given change go?
+- [ ] Does each chapter have a grounded quiz whose answers cite real code (unless `--no-quiz`)?
+- [ ] Does the final exam interleave across chapters rather than just repeat them?
 - [ ] Did the `book-auditor` report zero material gaps?
 - [ ] Is the coverage map fully accounted for?
 
@@ -258,6 +290,9 @@ If any box is unchecked, the book is not finished — keep going.
   the user explicitly wants a fast pass.
 - **`--depth deep`** (default for this skill): the full contract above, including the
   question-driven audit loop. This is what "answer anything" requires.
+- **Quizzes:** on by default in every mode; pass `--no-quiz` to skip. They are generated
+  after the audit so they are grounded in a correct book. In `quick` mode, generate a
+  short quiz per chapter and skip the final exam.
 - **Huge repos:** you still cover everything, but calibrate prose length to load-bearing-
   ness. Use many parallel `codebase-explorer` runs; don't serialize.
 - **Refresh mode:** if `book/` exists, regenerate only chapters whose underlying files
@@ -282,7 +317,12 @@ book/
 ├── NN-cross-cutting-concerns.md
 ├── NN-failure-modes.md
 ├── NN-how-do-i.md
-└── NN-glossary.md
+├── NN-glossary.md
+└── quizzes/                      # active-recall quizzes (on by default)
+    ├── 00-start-here-quiz.md
+    ├── 01-the-big-picture-quiz.md
+    ├── ...                        # one per chapter, cross-linked both ways
+    └── NN-final-exam.md           # interleaved across all chapters
 ```
 
 Number chapters so they sort in reading order.
@@ -305,3 +345,36 @@ The reader is productive in 10 minutes. Include:
 - The load-bearing architectural decisions and trade-offs (label inferences as such).
 - A "how a typical request/job flows at a high level" paragraph that later chapters zoom
   into.
+
+## Quiz specs (active recall)
+
+Quizzes live in a `quizzes/` folder, one file per chapter plus a final exam, cross-linked
+from each chapter ("→ Check your understanding: quizzes/03-...-quiz.md") and from the book
+README.
+
+**Per-chapter quiz** (5–10 questions):
+- Open with a one-line "how to use" (try closed-book first; then check answers and reread
+  the cited code).
+- Mix these question types:
+  - **Recall / comprehension (MCQ)** — the core concept or contract.
+  - **Trace-the-flow** — "Given input X, what is the order of steps / final result?"
+  - **Predict / what-happens-if (MCQ or short)** — edge cases, errors, concurrency.
+  - **Design rationale (short answer)** — "Why X instead of Y? What does it trade off?"
+  - **Locate-the-change (short answer)** — "To do Z, which file/function do you edit?"
+- Put all **answers + explanations below a `---` divider**, each citing `path:line` with
+  1–2 sentences on why the answer is right and the distractors are wrong.
+- Tag each question `[Recall]`, `[Apply]`, or `[Design]`.
+
+**Final exam** (`quizzes/NN-final-exam.md`):
+- 15–25 questions **interleaved across all chapters**, weighted toward load-bearing
+  subsystems and key flows.
+- Include 2–4 **scenario questions**: multi-step "trace this end to end" or "here's a
+  change request — where does it go, what could break?"
+- Same grounded answer key with citations.
+
+**Quiz quality bar** (every question must pass):
+- [ ] Exactly one defensible correct answer.
+- [ ] Answer is grounded in the chapter/code (cite `path:line`).
+- [ ] Distractors are plausible misconceptions, not filler.
+- [ ] Tests understanding of why/how/edge cases, not incidental trivia.
+- [ ] Unambiguous wording; no trick phrasing.

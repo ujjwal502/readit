@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "readit",
   "displayName": "ReadIt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Turn any codebase into a readable book — chapters, flows, and diagrams — so people understand what's actually happening instead of vibe coding.",
   "author": {
     "name": "Ujjwal Tiwari",

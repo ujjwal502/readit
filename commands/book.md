@@ -1,6 +1,6 @@
 ---
 description: Generate a complete, reference-grade "book" of the current codebase — deep enough to answer any design or implementation question without re-reading the source.
-argument-hint: "[output-dir] (default: ./book)  [--depth quick|deep] (default: deep)"
+argument-hint: "[output-dir] (default: ./book)  [--depth quick|deep] (default: deep)  [--no-quiz]"
 ---
 
 # /book — Generate a reference-grade codebase book
@@ -18,6 +18,7 @@ Follow the **codebase-book** skill as your complete methodology. Do not shortcut
   "answer anything" goal.
 - `--depth quick`: fast overview pass (skips the exhaustive audit). Only if the user
   explicitly asks for a quick version.
+- `--no-quiz`: skip the per-chapter quizzes and final exam (quizzes are on by default).
 
 ## What to do
 
@@ -37,9 +38,14 @@ Follow the **codebase-book** skill as your complete methodology. Do not shortcut
    design + implementation questions at the book, then **fill every gap it finds** by
    reading more code and expanding chapters. Repeat until it reports no material gaps.
    Close gaps by improving the book, never by weakening the questions.
-6. **Assemble.** Write `README.md` as the Table of Contents (with a coverage summary and
-   per-chapter one-liners), cross-link chapters, and verify all references and diagrams.
-7. **Report** the ToC, coverage summary, and any residual open questions.
+6. **Add quizzes (unless `--no-quiz`).** Run the `quiz-master` agent to generate a
+   grounded active-recall quiz for each chapter plus an interleaved final exam, written
+   into `quizzes/`. Every question has one defensible answer with a `path:line` citation;
+   cross-link each quiz from its chapter and back.
+7. **Assemble.** Write `README.md` as the Table of Contents (with a coverage summary and
+   per-chapter one-liners), cross-link chapters and quizzes, and verify all references
+   and diagrams.
+8. **Report** the ToC, coverage summary, and any residual open questions.
 
 ## Non-negotiables
 

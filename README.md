@@ -39,6 +39,9 @@ Every chapter is written against eight knowledge categories:
 - **Failure Modes & Edge Cases** — what breaks and how it's handled.
 - **How Do I…?** — a cookbook of common change recipes, grounded in real files.
 - **Glossary** — domain terms as used *in this codebase*.
+- **Quizzes** — a grounded active-recall quiz after every chapter, plus an interleaved
+  final exam, so reading actually sticks. Answers cite real `file:line` and double as
+  review. (On by default; `--no-quiz` to skip.)
 
 Every claim is grounded in real files — ReadIt reads the code before it writes about
 it, labels inferences as inferences, and says so honestly when something is unclear.
@@ -88,6 +91,7 @@ code (in parallel via a read-only explorer agent), then write the chapters.
 | `skills/codebase-book/SKILL.md` | The methodology: survey → coverage map → outline → deep write → audit → assemble. |
 | `agents/codebase-explorer.md` | Read-only sub-agent that deeply maps codebase slices (contracts, flows, edge cases) and returns grounded findings. |
 | `agents/book-auditor.md` | Read-only sub-agent that fires hard design + implementation questions at the finished book and reports gaps to fill. |
+| `agents/quiz-master.md` | Read-only sub-agent that writes grounded, self-checked active-recall quizzes (per chapter + a final exam) with answers that cite real `file:line`. |
 
 The `book-auditor` is the key to the "answer anything" bar: after a full draft, it
 stress-tests the book with the questions a reader would actually ask, and any gap it

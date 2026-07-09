@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "ReadIt — the codebase-to-book plugin.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "readit",
       "source": "./",
       "description": "Turn any codebase into a readable book with chapters, flows, and Mermaid diagrams.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Ujjwal Tiwari",
         "url": "https://github.com/ujjwal502"
